@@ -17,4 +17,4 @@ dist
 /db
 /bin
 /build
-*.jar
+/Webcontent/WEB-INF/lib
