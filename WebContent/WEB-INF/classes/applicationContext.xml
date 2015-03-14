@@ -26,6 +26,7 @@
 	 
 	<jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS">
 		<jdbc:script location="classpath:1.sql" />
+		<jdbc:script location="classpath:admin.sql" />
 	</jdbc:initialize-database>
 	<!--
 	<jdbc:embedded-database id="dataSource" type="H2">
@@ -36,10 +37,9 @@
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<!-- 注意：我用的是Annotation的方式配置的Hibernate，这里的property的name是annotatedClasses -->
-		<property name="annotatedClasses">
+		<property name="packagesToScan">
 			<list>
-				<value>com.baifeg.models.entity.Company</value>
-				<value>com.baifeg.models.entity.User</value>
+				<value>com.baifeg.models.entity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

@@ -4,26 +4,33 @@ import java.util.List;
 
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
-import com.baifeg.models.entity.Company;
 import com.baifeg.models.spring.SpringHelper;
 
-public class CompanyDao
+public class CommonDao<T>
 {
+	private final Class<T> clazz;
 	private static HibernateTemplate template;
 
-	public CompanyDao()
+	public CommonDao(Class<T> clazz)
 	{
+		this.clazz = clazz;
 		template = new HibernateTemplate(SpringHelper.getSessionFactory());
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Company> findAll()
+	public List<T> findAll()
 	{
-		return (List<Company>) template.find("from Company");
+		String name = clazz.getSimpleName();
+		return (List<T>) template.find("from " + name);
 	}
 
-	public void add(Company company)
+	public void add(T t)
 	{
-		template.save(company);
+		template.save(t);
+	}
+
+	public void delete(T t)
+	{
+		template.delete(t);
 	}
 }
