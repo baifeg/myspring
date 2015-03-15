@@ -2,6 +2,9 @@ package com.baifeg.services;
 
 import java.util.List;
 
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.SimpleExpression;
+
 import com.baifeg.models.dao.CommonDao;
 import com.baifeg.models.dao.DaoFactory;
 import com.baifeg.models.entity.Admin;
@@ -24,5 +27,11 @@ public class AdminService
 				return true;
 		}
 		return false;
+	}
+
+	public Admin getAdminByUsername(String username)
+	{
+		SimpleExpression re = Restrictions.eq("username", username);
+		return dao.query(re).get(0);
 	}
 }

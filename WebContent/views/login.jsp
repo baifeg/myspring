@@ -12,6 +12,13 @@
 		<div class="container">
 		<h2 class="text-center">Login System</h2>
 		<form class="form-horizontal" action="/login" th:action="@{/login}" th:object="${admin}" method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			<c:if test="${param.error != null}">
+				<p>Invalid username and password.</p>
+			</c:if>
+			<c:if test="${param.logout != null}">
+				<p>You have been logged out.</p>
+			</c:if>
 			<div class="form-group">
 				<label for="username" class="col-sm-2 control-label">Username</label>
 				<div class="col-sm-4">

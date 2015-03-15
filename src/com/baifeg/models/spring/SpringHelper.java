@@ -11,7 +11,7 @@ public class SpringHelper
 
 	static
 	{
-		context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		context = new ClassPathXmlApplicationContext("spring-jdbc.xml");
 		sessionFactory = context.getBean("sessionFactory", SessionFactory.class);
 	}
 	
